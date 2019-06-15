@@ -1,4 +1,0 @@
-#Fri Jun 14 22:15:25 EDT 2019
-base.0=/Users/ashwinjeyaseelan/Documents/GitHub/memtrix/build/app/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

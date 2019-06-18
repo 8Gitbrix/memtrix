@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memtrix/widgets/info_card.dart';
+import 'package:memtrix/widgets/deck_info.dart';
 
 class NotesScreen extends StatefulWidget {
   static final id = 'notes_screen';
@@ -9,7 +9,7 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  List<InfoCard> infoCards = [InfoCard()];
+  List<DeckInfo> infoCards = [DeckInfo()];
 
   @override
   Widget build(BuildContext context) {

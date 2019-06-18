@@ -3,12 +3,12 @@ import 'package:memtrix/constants.dart';
 import 'package:memtrix/screens/deck_screen.dart';
 import 'package:intl/intl.dart';
 
-class InfoCard extends StatefulWidget {
+class DeckInfo extends StatefulWidget {
   @override
-  _InfoCardState createState() => _InfoCardState();
+  _DeckInfoState createState() => _DeckInfoState();
 }
 
-class _InfoCardState extends State<InfoCard> {
+class _DeckInfoState extends State<DeckInfo> {
   String title = 'untitled';
   String dateAccessed = DateFormat('yyyy-MM-dd').format(DateTime.now());
   int numCards = 0;
@@ -41,7 +41,7 @@ class _InfoCardState extends State<InfoCard> {
               Text(title, style: kInfoCardTitleStyle,),
               SizedBox(height: 30),
               Text(dateAccessed, style: kInfoCardDateStyle),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               Text('${numCards.toString()} cards'),
             ],
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memtrix/widgets/note_card.dart';
+import 'package:memtrix/widgets/round_button.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 class DeckScreen extends StatefulWidget {
   static final id = 'note_screen';
@@ -20,18 +22,18 @@ class _DeckScreenState extends State<DeckScreen> {
   
   // if there's nothing to fetch from db, have empty starting note card:
   List<NoteCard>_cards = [NoteCard()];
-  PageController controller;
+  PageController controller = PageController(
+      initialPage: 0,
+      keepPage: false,
+      viewportFraction: 0.9,
+    );
 
   @override
   void initState() {
     super.initState();
     title = widget.title;
     numCards = widget.numCards;
-    controller = PageController(
-      initialPage: 0,
-      keepPage: false,
-      viewportFraction: 0.5,
-    );
+    
   }
 
   @override
@@ -78,45 +80,49 @@ class _DeckScreenState extends State<DeckScreen> {
                 itemCount: _cards.length,      
               ),
             ),
-            Card(
-              elevation: 25.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              color: Colors.cyanAccent,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.star),
-                    IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        // screen should also move to the last card!!
-                        setState(() {
-                          _cards.add(NoteCard());
-                          currentPage = _cards.length;
-                          
-                        });
-                        controller.jumpToPage(currentPage);
-                      },
-                    ),
-                    Icon(Icons.edit),
-                    IconButton(
-                      icon: Icon(Icons.remove),
-                      onPressed: () {
-                        setState(() {
-                          // make an alert!
-                          _cards.removeAt(currentPage);
-                        });
-                      },
-                    ),
-                  ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.minus,
+                    color: Colors.cyanAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      // make an alert!
+                      _cards.removeAt(currentPage);
+                    });
+                  }
                 ),
-              )
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.heart,
+                    color: Colors.pinkAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      // make an alert!
+                      //TODO: implement
+                    });
+                  }
+                ),
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.plus,
+                    color: Colors.yellowAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _cards.add(NoteCard());
+                      currentPage = _cards.length;   
+                    });
+                    controller.jumpToPage(currentPage);
+                  },
+                ),        
+              ],
             ),
-            SizedBox(height: 14),
+            SizedBox(height: 30),
           ],
         )
       ),
@@ -124,19 +130,15 @@ class _DeckScreenState extends State<DeckScreen> {
   }
 
   Widget _buildCard(BuildContext context, int index) {
-    final double blur = index == currentPage ? 10 : 0;
-    final double offset = index == currentPage ? 20 : 0;
-    final double top = index == currentPage ? 50 : 150;
+    final double bottom = index == currentPage ? 40 : 70;
+    final double top = index == currentPage ? 10 : 80;
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
+      width: 100,
       curve: Curves.easeInOutQuint,
-      margin: EdgeInsets.only(top: top, bottom: 50),
+      margin: EdgeInsets.only(top: top, bottom: bottom),
       child: _cards[index],
-      decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.black87, blurRadius: blur, offset: Offset(offset, offset))],
-        borderRadius: BorderRadius.circular(20),
-      ),
     );
   }
 

@@ -15,7 +15,8 @@ class _NoteCardState extends State<NoteCard> {
     return FlipCard(
       direction: FlipDirection.VERTICAL,
       front: Card(
-        color: Colors.cyan,
+        color: Colors.black38,
+        elevation: 25,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

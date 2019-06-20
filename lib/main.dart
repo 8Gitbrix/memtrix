@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memtrix/constants.dart';
 import 'package:memtrix/screens/login_screen.dart';
-import 'package:memtrix/screens/notes_screen.dart';
+import 'package:memtrix/screens/decks_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kMainColor,
         appBarTheme: kAppBarTheme,
       ),
-      initialRoute: NotesScreen.id,
+      initialRoute: DecksScreen.id,
       routes: {
         LoginScreen.id : (context) => LoginScreen(),
-        NotesScreen.id : (context) => NotesScreen(),
+        DecksScreen.id : (context) => DecksScreen(),
       },
     );
   }

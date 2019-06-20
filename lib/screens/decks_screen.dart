@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:memtrix/constants.dart';
 import 'package:memtrix/widgets/deck_info.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
-class NotesScreen extends StatefulWidget {
-  static final id = 'notes_screen';
+class DecksScreen extends StatefulWidget {
+  static final id = 'decks_screen';
 
   @override
-  _NotesScreenState createState() => _NotesScreenState();
+  _DecksScreenState createState() => _DecksScreenState();
 }
 
-class _NotesScreenState extends State<NotesScreen> {
+class _DecksScreenState extends State<DecksScreen> {
   List<DeckInfo> infoCards = [DeckInfo()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Decks'),
+        title: Text('Decks', style: kTitleStyle),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(EvaIcons.arrowBack, color: kInfoCardColor,),
             onPressed: () {
               Navigator.pop(context);
             },

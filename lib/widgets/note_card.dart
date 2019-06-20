@@ -1,5 +1,7 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:memtrix/constants.dart';
 
 class NoteCard extends StatefulWidget {
   @override
@@ -15,10 +17,10 @@ class _NoteCardState extends State<NoteCard> {
     return FlipCard(
       direction: FlipDirection.VERTICAL,
       front: Card(
-        color: Colors.black38,
+        color: kInfoCardColor,
         elevation: 25,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Padding(
           padding: const EdgeInsets.all(30.0),
@@ -35,11 +37,16 @@ class _NoteCardState extends State<NoteCard> {
                   textInputAction: TextInputAction.done,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: frontText != null ? frontText : 'Enter text',
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: kMainColor, width: 2),
+                    // ),
+                    
+                    hintText: frontText != null ? frontText : 'Enter text ',
+                    hintStyle: TextStyle(color: kMainColor)
                   ),
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 24,
+                    color: kMainColor,
                   ),
                   onChanged: (input) {
                     setState(() {
@@ -54,7 +61,7 @@ class _NoteCardState extends State<NoteCard> {
         )
       ),
       back: Card(
-        color: Colors.cyan,
+        color: kInfoCardColor,
         elevation: 25,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),

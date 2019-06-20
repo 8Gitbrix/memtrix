@@ -38,11 +38,11 @@ class _DeckInfoState extends State<DeckInfo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(title, style: kInfoCardTitleStyle,),
+              Text(title, style: kInfoCardTitleStyle),
               SizedBox(height: 30),
               Text(dateAccessed, style: kInfoCardDateStyle),
               SizedBox(height: 20),
-              Text('${numCards.toString()} cards'),
+              Text('${numCards.toString()} cards', style: TextStyle(color: kMainColor)),
             ],
           ),
         ),

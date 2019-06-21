@@ -21,8 +21,21 @@ const kInfoCardDateStyle = TextStyle(
 
 const kAppBarTheme = AppBarTheme(
   color: kMainColor,
-  textTheme: TextTheme(title: TextStyle(fontSize: 30, fontWeight: FontWeight.w300)),
+  textTheme:
+      TextTheme(title: TextStyle(fontSize: 30, fontWeight: FontWeight.w300)),
   elevation: 0.0,
 );
 
 const kInfoCardColor = Color(0xFF83FFDE);
+
+const kPinkColor = Color(0xFFFAD2E3);
+
+const kChooseImageWidget = Center(
+  child: Text(
+    'Choose an image',
+    style: TextStyle(
+      fontSize: 20,
+      color: kMainColor,
+    ),
+  ),
+);

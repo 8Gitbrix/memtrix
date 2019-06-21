@@ -70,67 +70,68 @@ class _DeckScreenState extends State<DeckScreen> {
         ],
       ),
       body: SafeArea(
-          child: Column(
-        children: <Widget>[
-          Expanded(
-            child: PageView.builder(
-              controller: controller,
-              onPageChanged: (value) {
-                setState(() {
-                  currentPage = value;
-                });
-              },
-              itemBuilder: (BuildContext context, int index) {
-                return _buildCard(context, index);
-              },
-              itemCount: _cards.length,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: PageView.builder(
+                controller: controller,
+                onPageChanged: (value) {
+                  setState(() {
+                    currentPage = value;
+                  });
+                },
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildCard(context, index);
+                },
+                itemCount: _cards.length,
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              RoundButton(
-                icon: Icon(
-                  EvaIcons.minus,
-                  color: Colors.cyanAccent,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.minus,
+                    color: Colors.cyanAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      // make an alert!
+                      _cards.removeAt(currentPage);
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    // make an alert!
-                    _cards.removeAt(currentPage);
-                  });
-                },
-              ),
-              RoundButton(
-                icon: Icon(
-                  EvaIcons.heart,
-                  color: Colors.pinkAccent,
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.heart,
+                    color: Colors.pinkAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      // make an alert!
+                      //TODO: implement
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    // make an alert!
-                    //TODO: implement
-                  });
-                },
-              ),
-              RoundButton(
-                icon: Icon(
-                  EvaIcons.plus,
-                  color: Colors.yellowAccent,
+                RoundButton(
+                  icon: Icon(
+                    EvaIcons.plus,
+                    color: Colors.yellowAccent,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _cards.add(NoteCard());
+                      currentPage = _cards.length;
+                    });
+                    controller.jumpToPage(currentPage);
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    _cards.add(NoteCard());
-                    currentPage = _cards.length;
-                  });
-                  controller.jumpToPage(currentPage);
-                },
-              ),
-            ],
-          ),
-          SizedBox(height: 30),
-        ],
-      )),
+              ],
+            ),
+            SizedBox(height: 22),
+          ],
+        ),
+      ),
     );
   }
 

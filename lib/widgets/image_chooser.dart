@@ -53,7 +53,7 @@ class _ImageChooserState extends State<ImageChooser> {
   void _onTap() {
     setState(() {
       curAnimation = curAnimation == 'idle' ? 'onPressed' : 'idle';
-      _controls.play('onPressed');
+
     });
   }
 

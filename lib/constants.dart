@@ -30,7 +30,7 @@ const kInfoCardColor = Color(0xFF83FFDE);
 
 const kPinkColor = Color(0xFFFAD2E3);
 
-const kChooseImageWidget = Center(
+const kChooseImageText = Center(
   child: Text(
     'Choose an image',
     style: TextStyle(

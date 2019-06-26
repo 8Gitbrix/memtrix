@@ -23,6 +23,7 @@ class _ReusableTxtFieldState extends State<ReusableTxtField> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: use EditableText instead
     return TextField(
       maxLines: null,
       expands: true,

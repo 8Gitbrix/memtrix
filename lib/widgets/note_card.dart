@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:memtrix/constants.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:memtrix/widgets/image_chooser.dart';
 import 'package:memtrix/widgets/reusable_card.dart';
 import 'package:memtrix/widgets/reusable_txtfield.dart';
 
@@ -24,18 +25,11 @@ class _NoteCardState extends State<NoteCard> {
       front: Stack(
         children: <Widget>[
           AnimatedPositioned(
-            curve: Curves.easeInOutCubic,
-            duration: Duration(milliseconds: 270),
-            top: 290,
+            curve: Curves.fastOutSlowIn,
+            duration: Duration(milliseconds: 300),
+            top: 280,
             height: frontImgCardHeight,
-            child: ReusableCard(
-              color: kPinkColor,
-              childPadding: 10,
-              cardChild: Container(
-                width: 340,
-                child: frontImage == null ? kChooseImageWidget: frontImage
-              ),
-            ),
+            child: ImageChooser(frontImage: frontImage,),
           ),
           // FIGURE OUT A WAY TO ENABLE A SCROLL ANIMATION IN THE CARD!
           AnimatedContainer(
@@ -60,7 +54,7 @@ class _NoteCardState extends State<NoteCard> {
             onPressed: () {
               setState(() {
                 frontCardHeight = frontCardHeight == 700 ? 280 : 700;
-                frontImgCardHeight = frontImgCardHeight == 270 ? 0 : 270;
+                frontImgCardHeight = frontImgCardHeight == 280 ? 0 : 280;
               });
             },
             tooltip: 'Insert an image',

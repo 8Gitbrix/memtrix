@@ -18,7 +18,6 @@ class _ImageChooserState extends State<ImageChooser> {
   Image _frontImage;
   String curAnimation = 'idle';
   //Future getImage()
-
   // upload from camera, gallery or search on pixabay!
 
   @override
@@ -35,15 +34,17 @@ class _ImageChooserState extends State<ImageChooser> {
       cardChild: Container(
         width: 340,
         //child: _frontImage == null ? kChooseImageText : _frontImage,
-        child: GestureDetector(
-          onTap: _onTap,
-          child: FlareActor(
-            'assets/image_button.flr',
-            animation: curAnimation,
-            fit: BoxFit.contain,
-            shouldClip: true,
-            alignment: Alignment.bottomRight,
-            controller: _controls,
+        child: Container(
+          child: GestureDetector(
+            onTap: _onTap,
+            child: FlareActor(
+              'assets/image_button.flr',
+              animation: curAnimation,
+              fit: BoxFit.contain,
+              shouldClip: true,
+              alignment: Alignment.bottomRight,
+              controller: _controls,
+            ),
           ),
         ),
       ),
@@ -53,7 +54,6 @@ class _ImageChooserState extends State<ImageChooser> {
   void _onTap() {
     setState(() {
       curAnimation = curAnimation == 'idle' ? 'onPressed' : 'idle';
-
     });
   }
 

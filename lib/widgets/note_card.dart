@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:memtrix/constants.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:memtrix/widgets/image_chooser.dart';
+import 'package:memtrix/widgets/gif_card.dart';
 import 'package:memtrix/widgets/reusable_card.dart';
 import 'package:memtrix/widgets/reusable_txtfield.dart';
 
@@ -12,7 +12,6 @@ class NoteCard extends StatefulWidget {
 }
 
 class _NoteCardState extends State<NoteCard> {
-  Image frontImage;
   // If there is no frontText to receive from db, frontText = '' empty string
   String frontText;
   double frontCardHeight = 700;
@@ -29,7 +28,7 @@ class _NoteCardState extends State<NoteCard> {
             duration: Duration(milliseconds: 300),
             top: 280,
             height: frontImgCardHeight,
-            child: ImageChooser(frontImage: frontImage,),
+            child: GifCard(),
           ),
           // FIGURE OUT A WAY TO ENABLE A SCROLL ANIMATION IN THE CARD!
           AnimatedContainer(
@@ -57,7 +56,7 @@ class _NoteCardState extends State<NoteCard> {
                 frontImgCardHeight = frontImgCardHeight == 280 ? 0 : 280;
               });
             },
-            tooltip: 'Insert an image',
+            tooltip: 'Insert a GIF',
             child: Icon(
               EvaIcons.image,
               color: kMainColor,

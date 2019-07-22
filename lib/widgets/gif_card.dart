@@ -1,5 +1,5 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'gif_search.dart';
 import '../constants.dart';
 import 'reusable_card.dart';
 
@@ -52,47 +52,7 @@ class _GifCardState extends State<GifCard> {
         return Container(
           color: Colors.black54,
           child: Container(
-            child: Column(
-              children: <Widget>[
-                // SEARCH BAR:
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: kMainColor,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: 'Search_',
-                          hintStyle: TextStyle(color: kMainColor),
-                          icon: Icon(
-                            EvaIcons.search,
-                            color: Colors.pinkAccent,
-                          ),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // GRID VIEW
-
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: kMainColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
+            child: GifSearch(),
           ),
         );
       },

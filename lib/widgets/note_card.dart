@@ -28,7 +28,7 @@ class _NoteCardState extends State<NoteCard> {
             duration: Duration(milliseconds: 300),
             top: 280,
             height: frontImgCardHeight,
-            child: GifCard(),
+            child: Flex(direction: Axis.vertical, children: [Expanded(child: GifCard())]),
           ),
           // FIGURE OUT A WAY TO ENABLE A SCROLL ANIMATION IN THE CARD!
           AnimatedContainer(

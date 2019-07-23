@@ -8,13 +8,16 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 class GifSearch extends StatefulWidget {
+  // use the model sheet's context to programatically exit it
+  GifSearch({this.context});
+  BuildContext context;
   @override
   _GifSearchState createState() => _GifSearchState();
 }
 
 class _GifSearchState extends State<GifSearch> {
   final _query = BehaviorSubject<String>();
-  List<Image> gifs = [];
+  List<String> gifs = []; // list of gif urls
   String apiKey = xGiphy_key;
   bool hasLoaded = true;
   bool searchError = false;
@@ -45,8 +48,10 @@ class _GifSearchState extends State<GifSearch> {
     if (response.statusCode == 200) {
       String data = response.body;
       var jsonsList = jsonDecode(data)['data'];
-      final gifsDynamic = jsonsList.map((g) => Image.network(g['images']['original']['url'] as String)).toList();
-      gifs = List<Image>.from(gifsDynamic);
+      final gifsDynamic = jsonsList
+          .map((g) => g['images']['original']['url'] as String)
+          .toList();
+      gifs = List<String>.from(gifsDynamic);
       setState(() {
         hasLoaded = true;
         searchError = false;
@@ -97,10 +102,21 @@ class _GifSearchState extends State<GifSearch> {
           hasLoaded
               ? (searchError
                   ? Text('Sry, no GIFS found. Try a different search!')
-                  : Expanded(child: GridView.count(
-                      crossAxisCount: 2,
-                      children: gifs,
-                    )))
+                  : Expanded(
+                      child: StaggeredGridView.countBuilder(
+                        itemCount: gifs.length == 0 ? 0 : 25,
+                        crossAxisCount: 4,
+                        itemBuilder: (BuildContext context, int index) =>
+                          GestureDetector(
+                            child: Image.network(gifs[index]),
+                            onTap: () {
+                              // close the parent modal sheet and return the gif:
+                              Navigator.pop(widget.context, Image.network(gifs[index]));
+                            },
+                          ),
+                        staggeredTileBuilder: (int index) => StaggeredTile.count(2, index.isEven ? 2 : 1),
+                      ),
+                    ))
               : CircularProgressIndicator()
         ],
       ),

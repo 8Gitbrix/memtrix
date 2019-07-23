@@ -86,49 +86,51 @@ class _DeckScreenState extends State<DeckScreen> {
                 itemCount: _cards.length,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                RoundButton(
-                  icon: Icon(
-                    EvaIcons.minus,
-                    color: Colors.cyanAccent,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      // make an alert!
-                      _cards.removeAt(currentPage);
-                    });
-                  },
-                ),
-                RoundButton(
-                  icon: Icon(
-                    EvaIcons.heart,
-                    color: Colors.pinkAccent,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      // make an alert!
-                      //TODO: implement
-                    });
-                  },
-                ),
-                RoundButton(
-                  icon: Icon(
-                    EvaIcons.plus,
-                    color: Colors.yellowAccent,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _cards.add(NoteCard());
-                      currentPage = _cards.length;
-                    });
-                    controller.jumpToPage(currentPage);
-                  },
-                ),
-              ],
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            RoundButton(
+              icon: Icon(
+                EvaIcons.minus,
+                color: Colors.cyanAccent,
+              ),
+              onPressed: () {
+                setState(() {
+                  // make an alert!
+                  _cards.removeAt(currentPage);
+                });
+              },
             ),
-            SizedBox(height: 22),
+            RoundButton(
+              icon: Icon(
+                EvaIcons.heart,
+                color: Colors.pinkAccent,
+              ),
+              onPressed: () {
+                setState(() {
+                  // make an alert!
+                  //TODO: implement
+                });
+              },
+            ),
+            RoundButton(
+              icon: Icon(
+                EvaIcons.plus,
+                color: Colors.yellowAccent,
+              ),
+              onPressed: () {
+                setState(() {
+                  _cards.add(NoteCard());
+                  currentPage = _cards.length;
+                });
+                controller.jumpToPage(currentPage);
+              },
+            ),
           ],
         ),
       ),
@@ -136,8 +138,8 @@ class _DeckScreenState extends State<DeckScreen> {
   }
 
   Widget _buildCard(BuildContext context, int index) {
-    final double bottom = index == currentPage ? 40 : 70;
-    final double top = index == currentPage ? 10 : 60;
+    final double bottom = index == currentPage ? 25 : 25;
+    final double top = index == currentPage ? 10 : 30;
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),

@@ -28,7 +28,7 @@ class _NoteCardState extends State<NoteCard> {
             duration: Duration(milliseconds: 300),
             top: 280,
             height: frontImgCardHeight,
-            child: Flex(direction: Axis.vertical, children: [Expanded(child: GifCard())]),
+            child: Flex(direction: Axis.vertical, children: [Flexible(child: GifCard())]),
           ),
           // FIGURE OUT A WAY TO ENABLE A SCROLL ANIMATION IN THE CARD!
           AnimatedContainer(
@@ -41,7 +41,6 @@ class _NoteCardState extends State<NoteCard> {
               cardChild: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 10),
                   Expanded(
                     child: ReusableTxtField(frontText: ''),
                   ),
@@ -52,7 +51,7 @@ class _NoteCardState extends State<NoteCard> {
           FloatingActionButton(
             onPressed: () {
               setState(() {
-                frontCardHeight = frontCardHeight == 700 ? 280 : 700;
+                frontCardHeight = frontCardHeight == 700 ? 275 : 700;
                 frontImgCardHeight = frontImgCardHeight == 280 ? 0 : 280;
               });
             },

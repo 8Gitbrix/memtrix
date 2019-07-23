@@ -11,6 +11,7 @@ class GifCard extends StatefulWidget {
 
 class _GifCardState extends State<GifCard> {
   String gifButtonText = 'Add GIF';
+  Image cardImage;
   //Future getImage()
   // upload from camera, gallery or search on pixabay!
 
@@ -23,7 +24,7 @@ class _GifCardState extends State<GifCard> {
         width: 340,
         child: Column(
           children: <Widget>[
-            Spacer(),
+            cardImage == null ? Spacer() : Expanded(child: ClipRRect(borderRadius: BorderRadius.circular(20.0), child: cardImage)),
             Row(
               children: <Widget>[
                 RaisedButton(
@@ -42,20 +43,21 @@ class _GifCardState extends State<GifCard> {
     );
   }
 
-  void onGIFPressed(BuildContext context) {
-    setState(() {
-      gifButtonText = gifButtonText == 'Add GIF' ? 'Change GIF' : 'Add GIF';
-    });
-    showModalBottomSheet(
+  void onGIFPressed(BuildContext context) async {
+    Image selected = await showModalBottomSheet(
       context: context,
       builder: (context) {
         return Container(
           color: Colors.black54,
           child: Container(
-            child: GifSearch(),
+            child: GifSearch(context: context),
           ),
         );
       },
     );
+    setState(() {
+      gifButtonText = cardImage == null ? 'Add GIF' : 'Change GIF' ;
+      cardImage = selected;
+    });
   }
 }
